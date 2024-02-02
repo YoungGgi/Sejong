@@ -48,8 +48,10 @@ public class GameStart : MonoBehaviour
     public TimeLimit timeLimit;                 // 제한시간 전용 클래스
 
     // 오디오소스와 효과음
-    public AudioSource audioSource;
-    public AudioClip sfxClip;
+    [SerializeField]
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip sfxClip;
 
     [SerializeField]
     private AudioClip hintClip;                 // 힌트 효과음
@@ -61,7 +63,7 @@ public class GameStart : MonoBehaviour
     }
 
     #region StartScene
-    public void StageIn()             // 게임 시작 함수
+    public void StageIn()             // 게임 시작 메소드
     {
         audioSource.PlayOneShot(sfxClip);
 
@@ -79,7 +81,7 @@ public class GameStart : MonoBehaviour
 
 
     #region NextStageScene
-    public void NextStageIn()              // 2 스테이지 이동 함수
+    public void NextStageIn()              // 2 스테이지 이동 메소드
     {
         audioSource.PlayOneShot(sfxClip);
 
@@ -87,7 +89,7 @@ public class GameStart : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public void Next3Stage()              // 3 스테이지 이동 함수
+    public void Next3Stage()              // 3 스테이지 이동 메소드
     {
         audioSource.PlayOneShot(sfxClip);
 
@@ -95,7 +97,7 @@ public class GameStart : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public void Next4Stage()              // 4 스테이지 이동 함수
+    public void Next4Stage()              // 4 스테이지 이동 메소드
     {
         audioSource.PlayOneShot(sfxClip);
 
@@ -103,7 +105,7 @@ public class GameStart : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public void Next5Stage()              // 엑스트라 스테이지 이동 함수
+    public void Next5Stage()              // 엑스트라 스테이지 이동 메소드
     {
         audioSource.PlayOneShot(sfxClip);
 
@@ -115,7 +117,7 @@ public class GameStart : MonoBehaviour
 
 
     #region OverScene
-    public void MainSceneIn()              // 메인 화면으로 이동하는 함수, 로딩 코루틴
+    public void MainSceneIn()              // 메인 화면으로 이동하는 메소드, 로딩 코루틴
     {
         audioSource.PlayOneShot(sfxClip);
 
@@ -131,50 +133,17 @@ public class GameStart : MonoBehaviour
     }
     #endregion OverScene
 
-    public void Re1Stage()                 // 1 스테이지 재시작 함수
+    public void StageRetry(int num)     // 스테이지 재시작 메소드
     {
         audioSource.PlayOneShot(sfxClip);
 
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(num);
         Time.timeScale = 1;
         timeLimit.timelimit = 60.0f;
     }
 
-    public void Re2Stage()                // 2 스테이지 재시작 함수
-    {
-        audioSource.PlayOneShot(sfxClip);
 
-        SceneManager.LoadScene(2);
-        Time.timeScale = 1;
-        timeLimit.timelimit = 60.0f;
-    }
-
-    public void Re3Stage()                // 3 스테이지 재시작 함수
-    {
-        audioSource.PlayOneShot(sfxClip);
-
-        SceneManager.LoadScene(3);
-        Time.timeScale = 1;
-        timeLimit.timelimit = 60.0f;
-    }
-
-    public void Re4Stage()               // 4 스테이지 재시작 함수
-    {
-        audioSource.PlayOneShot(sfxClip);
-
-        SceneManager.LoadScene(4);
-        Time.timeScale = 1;
-        timeLimit.timelimit = 60.0f;
-    }
-
-    public void Re5Stage()              // 엑스트라 스테이지 재시작 함수(폐기예정)
-    {
-        SceneManager.LoadScene(4);
-        Time.timeScale = 1;
-        timeLimit.timelimit = 60.0f;
-    }
-
-    public void Pause()                         // 일시정지 함수
+    public void Pause()                         // 일시정지 메소드
     {
         audioSource.PlayOneShot(sfxClip);
 
@@ -182,7 +151,7 @@ public class GameStart : MonoBehaviour
         Time.timeScale = 0;
     }
 
-    public void PauseOut()                      // 일시정지 해제 함수
+    public void PauseOut()                      // 일시정지 해제 메소드
     {
         audioSource.PlayOneShot(sfxClip);
 
@@ -190,21 +159,21 @@ public class GameStart : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public void ExitStage()                     // 게임 진행 중 나가기 함수
+    public void ExitStage()                     // 게임 진행 중 나가기 메소드
     {
         audioSource.PlayOneShot(sfxClip);
 
         SceneManager.LoadScene(0);
     }
 
-    public void ExitPopUp()                     // 게임 종료 팝업 호출 함수
+    public void ExitPopUp()                     // 게임 종료 팝업 호출 메소드
     {
         audioSource.PlayOneShot(sfxClip);
 
         ExitPanel.gameObject.SetActive(true);
     }
 
-     public void GameQuit()                     // 게임 종료 함수
+     public void GameQuit()                     // 게임 종료 메소드
     {
         audioSource.PlayOneShot(sfxClip);
 
@@ -212,7 +181,7 @@ public class GameStart : MonoBehaviour
     }
 
 
-    public void NoExit()                       // 게임 종료 팝업 비활성화 함수
+    public void NoExit()                       // 게임 종료 팝업 비활성화 메소드
     {
         audioSource.PlayOneShot(sfxClip);
 
@@ -238,7 +207,7 @@ public class GameStart : MonoBehaviour
     }
     
 
-    public void HintOn()                    // 힌트 활성화 함수
+    public void HintOn()                    // 힌트 활성화 메소드
     {
         audioSource.PlayOneShot(hintClip);
 
@@ -267,7 +236,7 @@ public class GameStart : MonoBehaviour
 
     }
 
-    public void SfxOn()                   // 효과음 재생 함수
+    public void SfxOn()                   // 효과음 재생 메소드
     {
         audioSource.PlayOneShot(sfxClip);
     }

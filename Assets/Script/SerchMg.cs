@@ -27,7 +27,7 @@ public class SerchMg : MonoBehaviour
     private void Start()
     {
         // 텍스트에 스테이지 별 찾은 개수 / 찾아야 하는 총 개수 할당
-        serch.text = serchNum + " / " + maxSerchNum;
+        serch.text = $"{serchNum} / {maxSerchNum}";
 
         audioSource = GetComponent<AudioSource>();
 
